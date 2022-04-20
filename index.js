@@ -1,8 +1,3 @@
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './src/App';
 const { ApolloServer, UserInputError, gql } = require('apollo-server')
 const { v1: uuid } = require('uuid')
 
@@ -120,10 +115,5 @@ server.listen().then(({ url }) => {
   console.log(`Server ready at ${url}`)
 })
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
+
 
