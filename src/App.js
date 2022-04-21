@@ -26,6 +26,7 @@ const App = () => {
   }
 
   if (!token){
+    console.log('token',token);
     return (
       <div>
         <Notify errorMessage={errorMessage} />

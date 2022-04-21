@@ -15,6 +15,7 @@ const LoginForm = ({ setError, setToken }) => {
   useEffect(() => {
     if ( result.data ) {
       const token = result.data.login.value
+      console.log('login token',token);
       setToken(token)
       localStorage.setItem('phonenumbers-user-token', token)
     }
