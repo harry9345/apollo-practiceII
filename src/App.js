@@ -25,18 +25,18 @@ const App = () => {
     client.resetStore()
   }
 
-  if (!token){
-    console.log('token',token);
-    return (
-      <div>
-        <Notify errorMessage={errorMessage} />
-        <h2>Login</h2>
-        <LoginForm 
-        setToken={setToken}
-        setError={notify}/>
-      </div>
-    )
-  }
+  // if (!token){
+  //   console.log('token',token);
+  //   return (
+  //     <div>
+  //       <Notify errorMessage={errorMessage} />
+  //       <h2>Login</h2>
+  //       <LoginForm 
+  //       setToken={setToken}
+  //       setError={notify}/>
+  //     </div>
+  //   )
+  // }
 
   if (result.loading) {
     return <div> loading ...</div>
