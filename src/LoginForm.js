@@ -6,16 +6,15 @@ const LoginForm = ({ setError, setToken }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const [ login, result ] = useMutation(LOGIN, {
+  const [login, result] = useMutation(LOGIN, {
     onError: (error) => {
       setError(error.graphQLErrors[0].message)
     }
   })
 
   useEffect(() => {
-    if ( result.data ) {
+    if (result.data) {
       const token = result.data.login.value
-      console.log('login token',token);
       setToken(token)
       localStorage.setItem('phonenumbers-user-token', token)
     }
@@ -23,7 +22,6 @@ const LoginForm = ({ setError, setToken }) => {
 
   const submit = async (event) => {
     event.preventDefault()
-
     login({ variables: { username, password } })
   }
 
@@ -31,19 +29,21 @@ const LoginForm = ({ setError, setToken }) => {
     <div>
       <form onSubmit={submit}>
         <div>
-          username <input
+          username{' '}
+          <input
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
         </div>
         <div>
-          password <input
-            type='password'
+          password{' '}
+          <input
+            type="password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button type='submit'>login</button>
+        <button type="submit">login</button>
       </form>
     </div>
   )

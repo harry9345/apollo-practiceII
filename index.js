@@ -8,7 +8,7 @@ const express = require('express')
 const http = require('http')
 
 const jwt = require('jsonwebtoken')
-const JWT_SECRET = 'sercet'
+const JWT_SECRET = 'secret'
 
 const User = require('./src/user')
 const mongoose = require('mongoose')

@@ -5,7 +5,7 @@ const pubsub = new PubSub()
 const Person = require('./src/models')
 const User = require('./src/user')
 
-const JWT_SECRET = 'sercet'
+const JWT_SECRET = 'secret'
 
 const resolvers = {
     Query: {
@@ -106,18 +106,18 @@ const resolvers = {
         },
         login: async (root, args) => {
             const user = await User.findOne({ username: args.username })
-
+      
             if (!user || args.password !== 'secret') {
-                throw new UserInputError('wrong credentials')
+              throw new UserInputError('wrong credentials')
             }
-
+      
             const userForToken = {
-                username: user.username,
-                id: user._id,
+              username: user.username,
+              id: user._id,
             }
-
+      
             return { value: jwt.sign(userForToken, JWT_SECRET) }
-        },
+          },
         addAsFriend: async (root, args, { currentUser }) => {
             const nonFriendAlready = (person) =>
                 !currentUser.friends.map(f => f._id.toString()).includes(person._id.toString())
