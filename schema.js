@@ -14,11 +14,12 @@ const typeDefs = gql`
     city: String!
   }
   type Person {
-    name: String!
-    phone: String
-    address: Address!
-    id: ID!
-  }
+  name: String!
+  phone: String
+  address: Address!
+  friendOf: [User!]!
+  id: ID!
+}
   enum YesNo {
     YES
     NO
