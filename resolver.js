@@ -11,7 +11,6 @@ const resolvers = {
     Query: {
         personCount: async () => Person.collection.countDocuments(),
         allPersons: async (root, args) => {
-
             // graph Ql
             // if (!args.phone) {
             //   return persons
@@ -21,10 +20,10 @@ const resolvers = {
             // return persons.filter(byPhone)
             // Mongo DB
             if (!args.phone) {
-                return Person.find({})
+                return Person.find({}).populate('friendOf')
             }
-
             return Person.find({ phone: { $exists: args.phone === 'YES' } })
+                .populate('friendOf')
         },
         findPerson: async (root, args) => Person.findOne({ name: args.name }),
         me: (root, args, context) => {
@@ -106,18 +105,18 @@ const resolvers = {
         },
         login: async (root, args) => {
             const user = await User.findOne({ username: args.username })
-      
+
             if (!user || args.password !== 'secret') {
-              throw new UserInputError('wrong credentials')
+                throw new UserInputError('wrong credentials')
             }
-      
+
             const userForToken = {
-              username: user.username,
-              id: user._id,
+                username: user.username,
+                id: user._id,
             }
-      
+
             return { value: jwt.sign(userForToken, JWT_SECRET) }
-          },
+        },
         addAsFriend: async (root, args, { currentUser }) => {
             const nonFriendAlready = (person) =>
                 !currentUser.friends.map(f => f._id.toString()).includes(person._id.toString())
