@@ -25,7 +25,6 @@ export const updateCache = (cache, query, addedPerson) => {
   })
 }
 
-
 const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [token, setToken] = useState(null)
